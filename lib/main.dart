@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store/inner_screens/feeds_screen.dart';
+import 'package:store/inner_screens/on_sale_screen.dart';
+import 'package:store/screens/btm_bar.dart';
 import 'package:store/consts/theme_data.dart';
-import 'package:store/provider/dark_theme_provider.dart';
 import 'package:store/screens/home_screen.dart';
+import 'package:store/provider/dark_theme_provider.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp( const MyApp());
 }
 
 class MyApp extends StatefulWidget {
- MyApp({Key? key}) : super(key: key);
+ const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -43,8 +46,11 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: Styles.themeData(themeProvider.getDarkTheme, context),
-            home: const HomeScreen()
-          );
+            home: const BottomBarScreen(),
+            routes: {
+              OnSaleScreen.routeName: (ctx) => const OnSaleScreen(),
+              FeedsScreen.routeName: (ctx) => const FeedsScreen(),
+            });
         }),
     );
   }
